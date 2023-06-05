@@ -6,6 +6,7 @@ const messageInput = form.elements.message;
 const feedbackStateKey = 'feedback-form-state';
 
 let formState = {};
+
 const savedFormState = localStorage.getItem(feedbackStateKey);
 if (savedFormState) {
   formState = JSON.parse(savedFormState);
@@ -36,7 +37,9 @@ const handleFormSubmit = event => {
     alert('Please enter your comment.');
     return;
   }
-  console.log(`Email: ${email} , Commend: ${message}`);
+  formState.email = emailInput.value.trim();
+  formState.message = messageInput.value.trim();
+  console.log(formState);
 
   form.reset();
   localStorage.removeItem(feedbackStateKey);
